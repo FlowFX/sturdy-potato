@@ -19,5 +19,6 @@ from potatos import views
 
 
 urlpatterns = [
-    url(r'^$', views.IndexView.as_view(), name='index')
+    url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'^potatos/(?P<pk>[0-9]+)/$', views.PotatoDetailView.as_view(), name='detail'),
 ]
