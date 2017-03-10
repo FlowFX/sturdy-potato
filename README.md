@@ -8,8 +8,8 @@ Django example code to support blog articles on flowfx.de
 - views and models tests using the Django test client
 - Using only pytest
 - pytest @slow marker to selectively runs slow tests
+- Form tests with pytest parametrization
 
 
 ## Planned
-- Form tests with pytest parametrization
 - Mocking a model's save function
