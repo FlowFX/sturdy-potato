@@ -18,14 +18,24 @@ class Potato(models.Model):
         """Return URL of the object's detail view."""
         return reverse('detail', args=[str(self.id)])
 
-    # def super_save(self, *args, **kwargs):
-    #     """Call the 'real' save() method."""
-    #     super(Contract, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            # Create unique slug on save
+            self.slug = random_key(5)
+
+        super(Potato, self).save(*args, **kwargs)  # Call the "real" save() method.
+
+
+class SuperPotato(Potato):
+    """A super potato."""
+
+    def super_save(self, *args, **kwargs):
+        """Call the 'real' save() method."""
+        super(SuperPotato, self).save(*args, **kwargs)
 
     def save(self, *args, **kwargs):
         if not self.slug:
             # Create unique slug on save
             self.slug = random_key(5)
 
-        # self.super_save(*args, **kwargs)
-        super(Potato, self).save(*args, **kwargs)  # Call the "real" save() method.
+        self.super_save(*args, **kwargs)
