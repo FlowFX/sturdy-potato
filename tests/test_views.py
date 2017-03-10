@@ -28,11 +28,16 @@ def test_detail_view(client):
 
     # GIVEN a Potato object
     potato = Potato()
+    potato.name = 'Eve'
+    potato.variety = 'Anya'
     potato.save()
 
     # WHEN calling the DetailView for this object
     url = reverse('detail', kwargs={'pk': potato.id})
     response = client.get(url)
 
+    content = response.content.decode()
     # THEN it shows the potato's ID and it's type
-
+    assert response.status_code == 200
+    assert potato.name in content
+    assert potato.variety in content
