@@ -54,7 +54,6 @@ DATABASES = {
 }
 
 
-
 # No Internationalization
 
 LANGUAGE_CODE = 'en-us'

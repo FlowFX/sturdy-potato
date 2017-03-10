@@ -4,4 +4,9 @@ Django==1.10.6
 # pytest
 pytest==3.0.6
 pytest-django==3.1.2
+pytest-flake8==0.8.1
 pytest-xdist==1.15.0
+
+# Flake8
+flake8==3.3.0
+flake8-docstrings==1.0.3
