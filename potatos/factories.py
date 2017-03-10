@@ -3,7 +3,6 @@
 from potatos.models import Potato
 
 from factory.fuzzy import FuzzyChoice, FuzzyInteger
-from factory import Sequence
 from factory.django import DjangoModelFactory
 
 
