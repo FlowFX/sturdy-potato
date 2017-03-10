@@ -30,11 +30,25 @@ def test_index_view(client):
     assert 'index.html' in (template.name for template in response.templates)
     # and it links to the potato list view
     assert reverse('list') in content
+    assert reverse('create') in content
+
+
+@pytest.mark.django_db
+def test_create_view_get_request(client):
+    """Test the create view for a Potato object with the Django test client."""
+
+    # GIVEN an empty database
+    # WHEN doing a GET request to the Potato's create view
+    url = reverse('create')
+    response = client.get(url)
+
+    # THEN it displays correctly
+    assert response.status_code == 200
 
 
 @slow
 @pytest.mark.django_db
-def test_create_view(client):
+def test_create_view_post_request(client):
     """Test the create view for a Potato object with the Django test client."""
 
     # GIVEN an empty database
