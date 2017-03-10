@@ -15,4 +15,4 @@ class PotatoDetailView(DetailView):
     """Single object view for the Potato object."""
 
     model = Potato
-    # pk_url_kwarg = 'id'
+    context_object_name = 'potato'
