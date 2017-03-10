@@ -16,6 +16,7 @@ class PotatoListView(ListView):
 
     model = Potato
     context_object_name = 'potatos'
+    template_name = 'potatos/potato_list.html'
 
 
 class PotatoDetailView(DetailView):
@@ -23,3 +24,4 @@ class PotatoDetailView(DetailView):
 
     model = Potato
     context_object_name = 'potato'
+    template_name = 'potatos/potato_detail.html'
