@@ -1,3 +1,6 @@
+"""Unit test the potatos models."""
+
+from potatos.factories import PotatoFactory
 from potatos.models import Potato
 
 import pytest
@@ -8,9 +11,7 @@ def test_save_and_retrieve_potato():
     """Test saving and retrieving Potato objects to and from the database."""
 
     # GIVEN an object and an empty database
-    potato = Potato()
-    potato.name = 'Hugo'
-    potato.variety = 'Kennebec'
+    potato = PotatoFactory.build()
     assert Potato.objects.count() == 0
 
     # WHEN saving it to the database
@@ -19,9 +20,9 @@ def test_save_and_retrieve_potato():
     # THEN it gets saved
     assert Potato.objects.count() == 1
 
-    # AND can get retrived later
+    # AND can get retrieved later
     new_potato = Potato.objects.first()
 
-    assert new_potato.name == 'Hugo'
-    assert new_potato.variety == 'Kennebec'
+    assert new_potato.name == potato.name
+    assert new_potato.variety == potato.variety
 

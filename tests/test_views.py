@@ -1,5 +1,6 @@
 from django.urls import reverse
 
+from potatos.factories import PotatoFactory
 from potatos.models import Potato
 
 import pytest
@@ -26,11 +27,8 @@ def test_index_view(client):
 def test_detail_view(client):
     """Test the detail view for a Potato object with the Django test client."""
 
-    # GIVEN a Potato object
-    potato = Potato()
-    potato.name = 'Eve'
-    potato.variety = 'Anya'
-    potato.save()
+    # GIVEN a Potato object in the database
+    potato = PotatoFactory.create()
 
     # WHEN calling the DetailView for this object
     url = reverse('detail', kwargs={'pk': potato.id})
@@ -48,8 +46,7 @@ def test_list_view(client):
     """Test the list view for Potato objects."""
 
     # GIVEN a number of potatos
-    for _ in range(5):
-        Potato().save()
+    PotatoFactory.create_batch(5)
 
     # WHEN calling the list view for our potatos
     url = reverse('list')
@@ -60,7 +57,8 @@ def test_list_view(client):
     potatos = Potato.objects.all()
 
     for potato in potatos:
-        assert str(potato.id) in content
+        assert str(potato.name) in content
+        assert str(potato.variety) in content
 
 
 
