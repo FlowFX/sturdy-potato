@@ -11,7 +11,6 @@ def test_detail_view(client):
 
     # GIVEN a Potato object
     potato = PotatoFactory.build()  # This is not saved to the database
-    potato.id = 5                   # The ID is set when saving. We don't want that.
 
     """Here we monkey-patch the 'get_object" method of our DetailView.
     No matter with what kwargs we call the view, it will always use the
