@@ -41,3 +41,27 @@ def test_detail_view(client):
     assert response.status_code == 200
     assert potato.name in content
     assert potato.variety in content
+
+
+@pytest.mark.django_db
+def test_list_view(client):
+    """Test the list view for Potato objects."""
+
+    # GIVEN a number of potatos
+    for _ in range(5):
+        Potato().save()
+
+    # WHEN calling the list view for our potatos
+    url = reverse('list')
+    response = client.get(url)
+
+    content = response.content.decode()
+    # THEN all existing potatos are listed
+    potatos = Potato.objects.all()
+
+    for potato in potatos:
+        assert str(potato.id) in content
+
+
+
+
