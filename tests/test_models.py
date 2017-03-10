@@ -33,3 +33,26 @@ def test_save_and_retrieve_potato():
     assert new_potato.weight == potato.weight
     assert new_potato.variety == potato.variety
 
+
+@slow
+@pytest.mark.django_db
+def test_save_generates_random_slug():
+    # GIVEN a new Potato object that has no slug yet
+    potato = PotatoFactory.build()
+    assert potato.slug is ''
+
+    # WHEN saving the object
+    potato.save()
+
+    # THEN its slug is created
+    assert potato.slug is not ''
+
+
+@slow
+@pytest.mark.django_db
+def test_save_generates_different_slug_for_every_object():
+    # GIVEN a 2 new potatos, saved to the database
+    potatos = PotatoFactory.create_batch(2)
+
+    # THEN their slugs are different
+    assert potatos[0].slug is not potatos[1].slug
