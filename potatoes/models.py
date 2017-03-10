@@ -19,11 +19,13 @@ class Potato(models.Model):
         return reverse('detail', args=[str(self.id)])
 
     def save(self, *args, **kwargs):
+        """On save, create the object's slug if it doesn't exist yet."""
         if not self.slug:
-            # Create unique slug on save
+            # Create unique slug
             self.slug = random_key(5)
 
-        super(Potato, self).save(*args, **kwargs)  # Call the "real" save() method.
+        # Call the "real" save() method.
+        super(Potato, self).save(*args, **kwargs)
 
 
 class SuperPotato(Potato):
@@ -34,8 +36,10 @@ class SuperPotato(Potato):
         super(SuperPotato, self).save(*args, **kwargs)
 
     def save(self, *args, **kwargs):
+        """On save, create the object's slug if it doesn't exist yet."""
         if not self.slug:
             # Create unique slug on save
             self.slug = random_key(5)
 
+        # Call the "real" save() method via a new super_save()
         self.super_save(*args, **kwargs)

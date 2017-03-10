@@ -15,7 +15,6 @@ def random_key(length):
         key = ''.join(choice(alphabet) for _ in range(length))
         if (any(c.islower() for c in key) and
                 any(c.isupper() for c in key) and
-                    sum(c.isdigit() for c in key) >= 3):
+                sum(c.isdigit() for c in key) >= 3):
             break
     return key
-
