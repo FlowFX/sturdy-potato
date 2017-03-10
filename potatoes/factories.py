@@ -1,6 +1,6 @@
-"""Model factories for the potatos project."""
+"""Model factories for the potatoes project."""
 
-from potatos.models import Potato, SuperPotato
+from potatoes.models import Potato, SuperPotato
 
 from factory.fuzzy import FuzzyChoice, FuzzyInteger
 from factory.django import DjangoModelFactory

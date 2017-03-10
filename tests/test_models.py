@@ -1,7 +1,7 @@
-"""Unit test the potatos models."""
+"""Unit test the potatoes models."""
 
-from potatos.factories import PotatoFactory
-from potatos.models import Potato
+from potatoes.factories import PotatoFactory
+from potatoes.models import Potato
 
 import pytest
 
@@ -51,8 +51,8 @@ def test_save_generates_random_slug():
 @slow
 @pytest.mark.django_db
 def test_save_generates_different_slug_for_every_object():
-    # GIVEN a 2 new potatos, saved to the database
-    potatos = PotatoFactory.create_batch(2)
+    # GIVEN a 2 new potatoes, saved to the database
+    potatoes = PotatoFactory.create_batch(2)
 
     # THEN their slugs are different
-    assert potatos[0].slug is not potatos[1].slug
+    assert potatoes[0].slug is not potatoes[1].slug

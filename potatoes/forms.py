@@ -1,6 +1,6 @@
-"""Forms for the potatos project."""
+"""Forms for the potatoes project."""
 
-from potatos.models import Potato
+from potatoes.models import Potato
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit

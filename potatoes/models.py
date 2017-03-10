@@ -1,4 +1,4 @@
-"""Django models for the potatos module."""
+"""Django models for the potatoes module."""
 
 from .utils import random_key
 

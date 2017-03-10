@@ -1,11 +1,11 @@
-"""Unit test the potatos models."""
+"""Unit test the potatoes models."""
 
-from potatos.factories import PotatoFactory, SuperPotatoFactory
+from potatoes.factories import PotatoFactory, SuperPotatoFactory
 
 from mock import patch, MagicMock
 
 
-@patch('potatos.models.Potato.save', MagicMock(name="save"))
+@patch('potatoes.models.Potato.save', MagicMock(name="save"))
 def test_naively_mocked_save_method_does_not_generate_slug_at_all():
     # GIVEN a new Potato object
     potato = PotatoFactory.build()
@@ -18,7 +18,7 @@ def test_naively_mocked_save_method_does_not_generate_slug_at_all():
     assert potato.slug is ''
 
 
-@patch('potatos.models.SuperPotato.super_save', MagicMock(name="super_save"))
+@patch('potatoes.models.SuperPotato.super_save', MagicMock(name="super_save"))
 def test_properly_mocked_save_method_generates_slug():
     # GIVEN a new Potato object
     potato = SuperPotatoFactory.build()
@@ -31,10 +31,10 @@ def test_properly_mocked_save_method_generates_slug():
     assert potato.slug is not ''
 
 
-@patch('potatos.models.SuperPotato.super_save', MagicMock(name="super_save"))
+@patch('potatoes.models.SuperPotato.super_save', MagicMock(name="super_save"))
 def test_properly_mocked_save_method_generates_unique_slugs():
-    # GIVEN a 2 new super potatos, saved to the database
-    potatos = SuperPotatoFactory.create_batch(2)
+    # GIVEN a 2 new super potatoes, saved to the database
+    potatoes = SuperPotatoFactory.create_batch(2)
 
     # THEN their slugs are different
-    assert potatos[0].slug is not potatos[1].slug
+    assert potatoes[0].slug is not potatoes[1].slug

@@ -16,7 +16,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django_extensions',
     'crispy_forms',
-    'potatos',
+    'potatoes',
 ]
 
 MIDDLEWARE = [

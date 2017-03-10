@@ -11,7 +11,7 @@ Here:
     variety = models.CharField(max_length=255)
 """
 
-from potatos.forms import PotatoForm
+from potatoes.forms import PotatoForm
 
 import pytest
 

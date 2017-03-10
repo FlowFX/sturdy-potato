@@ -1,7 +1,7 @@
 from django.urls import reverse
 
-from potatos.factories import PotatoFactory
-from potatos.models import Potato
+from potatoes.factories import PotatoFactory
+from potatoes.models import Potato
 
 import pytest
 
@@ -58,7 +58,7 @@ def test_create_view_post_request(client):
 
     # THEN it redirects to the new object's detail view
     assert response.status_code == 302
-    assert response['location'] == '/potatos/1/'
+    assert response['location'] == '/potatoes/1/'
 
 
 @slow
@@ -85,18 +85,18 @@ def test_detail_view(client):
 def test_list_view(client):
     """Test the list view for Potato objects."""
 
-    # GIVEN a number of potatos
+    # GIVEN a number of potatoes
     PotatoFactory.create_batch(5)
 
-    # WHEN calling the list view for our potatos
+    # WHEN calling the list view for our potatoes
     url = reverse('list')
     response = client.get(url)
 
     content = response.content.decode()
-    # THEN all existing potatos are listed
-    potatos = Potato.objects.all()
+    # THEN all existing potatoes are listed
+    potatoes = Potato.objects.all()
 
-    for potato in potatos:
+    for potato in potatoes:
         assert str(potato.weight) in content
         assert potato.variety in content
 

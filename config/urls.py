@@ -15,12 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 
-from potatos import views
+from potatoes import views
 
 
 urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name='index'),
-    url(r'^potatos/$', views.PotatoListView.as_view(), name='list'),
-    url(r'^potatos/new$', views.PotatoCreateView.as_view(), name='create'),
-    url(r'^potatos/(?P<pk>[0-9]+)/$', views.PotatoDetailView.as_view(), name='detail'),
+    url(r'^potatoes/$', views.PotatoListView.as_view(), name='list'),
+    url(r'^potatoes/new$', views.PotatoCreateView.as_view(), name='create'),
+    url(r'^potatoes/(?P<pk>[0-9]+)/$', views.PotatoDetailView.as_view(), name='detail'),
 ]

@@ -1,7 +1,7 @@
 from django.urls import reverse
 
-from potatos.factories import PotatoFactory
-from potatos.views import PotatoDetailView, PotatoListView
+from potatoes.factories import PotatoFactory
+from potatoes.views import PotatoDetailView, PotatoListView
 
 from mock import patch
 
@@ -32,21 +32,21 @@ def test_detail_view(client):
 def test_list_view(client):
     """Test the list view for Potato objects."""
 
-    # GIVEN a number of potatos
-    potatos = PotatoFactory.build_batch(5)
+    # GIVEN a number of potatoes
+    potatoes = PotatoFactory.build_batch(5)
 
     """Same monkey-patching as above. For the ListView it is the 'get_queryset'
     method that we want to disable.
     """
-    with patch.object(PotatoListView, 'get_queryset', return_value=potatos):
-        # WHEN calling the list view for our potatos
+    with patch.object(PotatoListView, 'get_queryset', return_value=potatoes):
+        # WHEN calling the list view for our potatoes
         url = reverse('list')
         response = client.get(url)
 
         content = response.content.decode()
 
         # THEN all existing potatos are listed
-        for potato in potatos:
+        for potato in potatoes:
             assert str(potato.weight) in content
             assert potato.variety in content
 

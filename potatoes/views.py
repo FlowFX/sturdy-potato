@@ -1,6 +1,6 @@
 """Views for the potato project."""
 
-from potatos.models import Potato
+from potatoes.models import Potato
 
 from django.views.generic import CreateView, DetailView, ListView, TemplateView
 
@@ -16,7 +16,7 @@ class PotatoCreateView(CreateView):
 
     model = Potato
     fields = ['weight', 'variety']
-    template_name = 'potatos/potato_form.html'
+    template_name = 'potatoes/potato_form.html'
 
 
 class PotatoDetailView(DetailView):
@@ -24,12 +24,12 @@ class PotatoDetailView(DetailView):
 
     model = Potato
     context_object_name = 'potato'
-    template_name = 'potatos/potato_detail.html'
+    template_name = 'potatoes/potato_detail.html'
 
 
 class PotatoListView(ListView):
     """List view for the Potato object."""
 
     model = Potato
-    context_object_name = 'potatos'
-    template_name = 'potatos/potato_list.html'
+    context_object_name = 'potatoes'
+    template_name = 'potatoes/potato_list.html'
