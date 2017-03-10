@@ -37,7 +37,7 @@ def test_detail_view(client):
     content = response.content.decode()
     # THEN it shows the potato's ID and it's type
     assert response.status_code == 200
-    assert potato.name in content
+    assert str(potato.weight) in content
     assert potato.variety in content
 
 
@@ -57,8 +57,8 @@ def test_list_view(client):
     potatos = Potato.objects.all()
 
     for potato in potatos:
-        assert str(potato.name) in content
-        assert str(potato.variety) in content
+        assert str(potato.weight) in content
+        assert potato.variety in content
 
 
 

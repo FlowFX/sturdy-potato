@@ -2,7 +2,7 @@
 
 from potatos.models import Potato
 
-from factory.fuzzy import FuzzyChoice
+from factory.fuzzy import FuzzyChoice, FuzzyInteger
 from factory import Sequence
 from factory.django import DjangoModelFactory
 
@@ -13,7 +13,7 @@ class PotatoFactory(DjangoModelFactory):
     class Meta:  # noqa
         model = Potato
 
-    name = Sequence(lambda n: 'Oscar_%04d' % n)
+    weight = FuzzyInteger(1, 1000)
     variety = FuzzyChoice(['Anya',
                            'Arran Victory',
                            'Blaue Viola',

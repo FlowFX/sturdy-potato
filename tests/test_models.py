@@ -23,6 +23,6 @@ def test_save_and_retrieve_potato():
     # AND can get retrieved later
     new_potato = Potato.objects.first()
 
-    assert new_potato.name == potato.name
+    assert new_potato.weight == potato.weight
     assert new_potato.variety == potato.variety
 
