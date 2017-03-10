@@ -1,6 +1,6 @@
 """Model factories for the potatoes project."""
 
-from potatoes.models import Potato, SuperPotato
+from potatoes.models import Potato, SturdyPotato
 
 from factory.fuzzy import FuzzyChoice, FuzzyInteger
 from factory.django import DjangoModelFactory
@@ -21,11 +21,11 @@ class PotatoFactory(DjangoModelFactory):
                            ])
 
 
-class SuperPotatoFactory(DjangoModelFactory):
+class SturdyPotatoFactory(DjangoModelFactory):
     """ModelFactory for the Potato object."""
 
     class Meta:  # noqa
-        model = SuperPotato
+        model = SturdyPotato
 
     weight = FuzzyInteger(1, 1000)
     variety = FuzzyChoice(['Anya',

@@ -28,12 +28,12 @@ class Potato(models.Model):
         super(Potato, self).save(*args, **kwargs)
 
 
-class SuperPotato(Potato):
+class SturdyPotato(Potato):
     """A super potato."""
 
     def super_save(self, *args, **kwargs):
         """Call the 'real' save() method."""
-        super(SuperPotato, self).save(*args, **kwargs)
+        super(SturdyPotato, self).save(*args, **kwargs)
 
     def save(self, *args, **kwargs):
         """On save, create the object's slug if it doesn't exist yet."""
