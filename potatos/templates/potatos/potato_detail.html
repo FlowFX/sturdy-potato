@@ -1,2 +1,12 @@
-Weight (in g): {{ potato.weight }}
-Variety: {{ potato.variety }}
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Potato No. {{ potato.id }}</h1>
+
+<ul>
+    <li>Weight (in g): {{ potato.weight }}</li>
+    <li>Variety: {{ potato.variety }}</li>
+</ul>
+
+{% endblock content %}

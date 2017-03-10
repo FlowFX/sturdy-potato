@@ -1,5 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>List of all potatos</h1>
+
+<ul>
 {% for potato in potatos %}
-    {{ potato.id }}
-    {{ potato.weight }}
-    {{ potato.variety }}
+    <li>
+        Id: {{ potato.id }},
+        weight: {{ potato.weight }},
+        variety: {{ potato.variety }}
+    </li>
 {% endfor %}
+</ul>
+
+{% endblock content %}
