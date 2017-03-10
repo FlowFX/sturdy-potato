@@ -20,14 +20,14 @@ def test_naively_mocked_save_method_does_not_generate_slug_at_all():
 
 @patch('potatoes.models.SuperPotato.super_save', MagicMock(name="super_save"))
 def test_properly_mocked_save_method_generates_slug():
-    # GIVEN a new Potato object
+    # GIVEN an enhanced Potato object
     potato = SuperPotatoFactory.build()
     assert potato.slug is ''
 
     # WHEN saving the object
     potato.save()
 
-    # THEN no slug is created, because the mocked 'save' method doesn't do anything
+    # THEN the slug is created, because the mocked 'super_save' method is super
     assert potato.slug is not ''
 
 
