@@ -7,6 +7,7 @@ pytest-django==3.1.2
 pytest-flake8==0.8.1
 pytest-xdist==1.15.0
 factory-boy==2.8.1
+mock==2.0.0
 
 # Flake8
 flake8==3.3.0
