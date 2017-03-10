@@ -21,12 +21,30 @@ def test_index_view(client):
     # WHEN calling it with the Django test client
     response = client.get(url)
 
+    content = response.content.decode()
     # THEN it's there,
     assert response.status_code == 200
     # the project title is visible,
-    assert '<h1>Sturdy Potato</h1>' in response.content.decode()
-    # and the correct template is used
+    assert '<h1>Sturdy Potato</h1>' in content
+    # the correct template is used,
     assert 'index.html' in (template.name for template in response.templates)
+    # and it links to the potato list view
+    assert reverse('list') in content
+
+
+@slow
+@pytest.mark.django_db
+def test_create_view(client):
+    """Test the create view for a Potato object with the Django test client."""
+
+    # GIVEN an empty database
+    # WHEN doing a POST request to the Potato's create view
+    url = reverse('create')
+    response = client.post(url, data={'weight': 100, 'variety': 'Ugly Cucumber',})
+
+    # THEN it redirects to the new object's detail view
+    assert response.status_code == 302
+    assert response['location'] == '/potatos/1/'
 
 
 @slow

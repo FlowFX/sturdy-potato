@@ -1,6 +1,7 @@
 """Django models for the potatos module."""
 
 from django.db import models
+from django.urls import reverse
 
 
 class Potato(models.Model):
@@ -8,3 +9,6 @@ class Potato(models.Model):
 
     weight = models.IntegerField()
     variety = models.CharField(max_length=255)
+
+    def get_absolute_url(self):
+        return reverse('detail', args=[str(self.id)])
