@@ -1,6 +1,7 @@
 # Django
 Django==1.10.6
 django-extensions==1.7.7
+bpython==0.16
 
 # pytest
 pytest==3.0.6
