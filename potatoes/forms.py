@@ -21,7 +21,7 @@ class PotatoForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         """Initiate form with Crispy Form's FormHelper."""
+        super(PotatoForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
 
         self.helper.add_input(Submit('submit', 'Submit'))
-        super(PotatoForm, self).__init__(*args, **kwargs)

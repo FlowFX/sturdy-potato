@@ -1,6 +1,7 @@
 """Views for the potato project."""
 
 from potatoes.models import Potato
+from potatoes.forms import PotatoForm
 
 from django.views.generic import CreateView, DetailView, ListView, TemplateView
 
@@ -15,7 +16,7 @@ class PotatoCreateView(CreateView):
     """Create view for the Potato model."""
 
     model = Potato
-    fields = ['weight', 'variety']
+    form_class = PotatoForm
     template_name = 'potatoes/potato_form.html'
 
 
