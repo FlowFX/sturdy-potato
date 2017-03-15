@@ -1,0 +1,8 @@
+[run]
+source = potatoes
+branch = True
+omit = 
+	# omit all tests
+	tests/*
+	# omit migrations
+	*/migrations/*
