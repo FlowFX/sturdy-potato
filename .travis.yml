@@ -1,0 +1,15 @@
+language: python
+python:
+  - 3.5
+  - 3.6
+# Install dependencies
+install: "pip install -r requirements.txt"
+# Run tests
+script:
+  - pytest --runslow --cov
+# Notify coveralls.io
+after_success:
+  - coveralls
+# Disable email notifications
+notifications:
+  email: false

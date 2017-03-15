@@ -12,6 +12,11 @@ pytest-xdist==1.15.0
 factory-boy==2.8.1
 mock==2.0.0
 
+# coverage
+coverage==4.3.4
+pytest-cov==2.4.0
+python-coveralls==2.9.0
+
 # Flake8
 flake8==3.3.0
 flake8-docstrings==1.0.3
