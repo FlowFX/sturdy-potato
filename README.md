@@ -1,4 +1,8 @@
 # sturdy-potato
+[![Build Status](https://travis-ci.org/FlowFX/sturdy-potato.svg?branch=master)](https://travis-ci.org/FlowFX/sturdy-potato)
+[![Coverage Status](https://coveralls.io/repos/github/FlowFX/sturdy-potato/badge.svg?branch=master)](https://coveralls.io/github/FlowFX/sturdy-potato?branch=master)
+[![Updates](https://pyup.io/repos/github/FlowFX/sturdy-potato/shield.svg)](https://pyup.io/repos/github/FlowFX/sturdy-potato/)
+
 Django example code to support blog articles on flowfx.de
 
 
