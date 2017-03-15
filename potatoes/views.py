@@ -1,9 +1,23 @@
 """Views for the potato project."""
 
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
 from potatoes.models import Potato
 from potatoes.forms import PotatoForm
 
 from django.views.generic import CreateView, DetailView, ListView, TemplateView
+
+
+class FormActionMixin(object):
+
+    def post(self, request, *args, **kwargs):
+        """Add 'Cancel' button redirect."""
+        if 'cancel' in request.POST:
+            url = reverse('index')
+            return HttpResponseRedirect(url)
+        else:
+            return super(FormActionMixin, self).post(request, *args, **kwargs)
 
 
 class IndexView(TemplateView):
@@ -12,7 +26,7 @@ class IndexView(TemplateView):
     template_name = 'index.html'
 
 
-class PotatoCreateView(CreateView):
+class PotatoCreateView(FormActionMixin, CreateView):
     """Create view for the Potato model."""
 
     model = Potato
