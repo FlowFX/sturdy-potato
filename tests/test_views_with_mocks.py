@@ -8,7 +8,6 @@ from mock import patch
 
 def test_detail_view(client):
     """Test the detail view for a Potato object with the Django test client."""
-
     # GIVEN a Potato object
     potato = PotatoFactory.build()  # This is not saved to the database
 
@@ -31,7 +30,6 @@ def test_detail_view(client):
 
 def test_list_view(client):
     """Test the list view for Potato objects."""
-
     # GIVEN a number of potatoes
     potatoes = PotatoFactory.build_batch(5)
 
@@ -50,3 +48,36 @@ def test_list_view(client):
             assert str(potato.weight) in content
             assert potato.variety in content
 
+
+def test_detail_view_with_mocker(client, mocker):
+    """Same test, but using the mocker fixture from pytest-mock."""
+    potato = PotatoFactory.build()
+
+    # This is new
+    mocker.patch.object(PotatoDetailView, 'get_object', return_value=potato)
+
+    url = reverse('detail', kwargs={'pk': 1234})
+    response = client.get(url)
+
+    content = response.content.decode()
+
+    assert response.status_code == 200
+    assert str(potato.weight) in content
+    assert potato.variety in content
+
+
+def test_list_view_with_mocker(client, mocker):
+    """Same test, but using the mocker fixture from pytest-mock."""
+    potatoes = PotatoFactory.build_batch(5)
+
+    # This is new
+    mocker.patch.object(PotatoListView, 'get_queryset', return_value=potatoes)
+
+    url = reverse('list')
+    response = client.get(url)
+
+    content = response.content.decode()
+
+    for potato in potatoes:
+        assert str(potato.weight) in content
+        assert potato.variety in content
