@@ -3,10 +3,12 @@ python:
   - 3.5
   - 3.6
 # Install dependencies
-install: "pip install -r requirements.txt"
+install:
+  - "pip install -r requirements.txt"
+  - "pip install tox"
 # Run tests
 script:
-  - pytest --runslow --cov
+  - tox
 # Notify coveralls.io
 after_success:
   - coveralls

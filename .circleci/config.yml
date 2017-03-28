@@ -1,0 +1,36 @@
+# CircleCI 2.0 configuration
+
+version: 2
+jobs:
+  build:
+    working_directory: ~/sturdy-potato
+    docker:
+      - image: python:3.6.1
+      - image: postgres:9.6.2
+        environment:
+          POSTGRES_USER: ubuntu
+          POSTGRES_DB: circle_test
+          POSTGRES_PASSWORD: ""
+    environment:
+      DB_HOST: localhost
+      DB_NAME: circle_test
+      DB_USER: ubuntu
+      DB_PASSWORD: ""
+    steps:
+      - checkout
+      - run:
+          name: Install dependencies
+          command: pip install tox
+      - restore_cache:  # tox
+          keys:
+            - tox-{{ .Branch }}-{{ checksum "requirements.txt"}}-{{ checksum "tox.ini"}}
+      - run:
+          name: Test with tox
+          command: tox
+      - save_cache:  # tox
+          key: tox-{{ .Branch }}-{{ checksum "requirements.txt"}}-{{ checksum "tox.ini"}}
+          paths:
+            - "/root/sturdy-potato/.tox"
+      - store_artifacts:
+          path: htmlcov
+          destination: reports# CircleCI 2.0 configuration
