@@ -21,3 +21,6 @@ python-coveralls==2.9.0
 # Flake8
 flake8==3.3.0
 flake8-docstrings==1.0.3
+
+# misc
+safety==1.1.1
