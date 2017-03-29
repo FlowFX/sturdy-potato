@@ -8,29 +8,37 @@ jobs:
       - image: python:3.6.1
       - image: postgres:9.6.2
         environment:
+          # configure the PostgreSQL database
           POSTGRES_USER: ubuntu
           POSTGRES_DB: circle_test
           POSTGRES_PASSWORD: ""
     environment:
+      # configure the Django database settings
       DB_HOST: localhost
       DB_NAME: circle_test
       DB_USER: ubuntu
       DB_PASSWORD: ""
     steps:
       - checkout
+      # we use tox, which installs the project requirements into its own environment
       - run:
-          name: Install dependencies
+          name: Install tox
           command: pip install tox
-      - restore_cache:  # tox
+      # get previous .tox environments form cache, which _really_ speeds up the build
+      - restore_cache:
           keys:
             - tox-{{ .Branch }}-{{ checksum "requirements.txt"}}-{{ checksum "tox.ini"}}
       - run:
           name: Test with tox
           command: tox
-      - save_cache:  # tox
+      # save .tox environment to cache
+      - save_cache:
           key: tox-{{ .Branch }}-{{ checksum "requirements.txt"}}-{{ checksum "tox.ini"}}
           paths:
             - "/root/sturdy-potato/.tox"
+      # save coverage HTML report
       - store_artifacts:
           path: htmlcov
-          destination: reports# CircleCI 2.0 configuration
+          destination: reports
+      
+      # Now, where's the deploy step?!
