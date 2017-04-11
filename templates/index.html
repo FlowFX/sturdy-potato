@@ -5,8 +5,8 @@
 <h1>Sturdy Potato</h1>
 
 <ul>
-    <li><a href="{% url 'list' %}">List of all potatoes</a></li>
-    <li><a href="{% url 'create' %}">Create a new potato</a></li>
+    <li><a href="{% url 'potatoes:list' %}">List of all potatoes</a></li>
+    <li><a href="{% url 'potatoes:create' %}">Create a new potato</a></li>
 </ul>
 
 {% endblock content %}

@@ -16,7 +16,7 @@ class Potato(models.Model):
 
     def get_absolute_url(self):
         """Return URL of the object's detail view."""
-        return reverse('detail', args=[str(self.id)])
+        return reverse('potatoes:detail', args=[str(self.id)])
 
     def save(self, *args, **kwargs):
         """On save, create the object's slug if it doesn't exist yet."""

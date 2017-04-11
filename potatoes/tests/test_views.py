@@ -23,8 +23,8 @@ def test_index_view(client):
     # the correct template is used,
     assert 'index.html' in (template.name for template in response.templates)
     # and it links to the potato list view
-    assert reverse('list') in content
-    assert reverse('create') in content
+    assert reverse('potatoes:list') in content
+    assert reverse('potatoes:create') in content
 
 
 @pytest.mark.django_db
@@ -33,7 +33,7 @@ def test_create_view_get_request(client):
 
     # GIVEN an empty database
     # WHEN doing a GET request to the Potato's create view
-    url = reverse('create')
+    url = reverse('potatoes:create')
     response = client.get(url)
 
 
@@ -47,7 +47,7 @@ def test_create_view_post_request(client):
 
     # GIVEN an empty database
     # WHEN doing a POST request to the Potato's create view
-    url = reverse('create')
+    url = reverse('potatoes:create')
     response = client.post(url, data={'weight': 100, 'variety': 'Ugly Cucumber',})
 
     # THEN it redirects to the new object's detail view
@@ -63,7 +63,7 @@ def test_detail_view(client):
     potato = PotatoFactory.create()
 
     # WHEN calling the DetailView for this object
-    url = reverse('detail', kwargs={'pk': potato.id})
+    url = reverse('potatoes:detail', kwargs={'pk': potato.id})
     response = client.get(url)
 
     content = response.content.decode()
@@ -81,7 +81,7 @@ def test_list_view(client):
     PotatoFactory.create_batch(5)
 
     # WHEN calling the list view for our potatoes
-    url = reverse('list')
+    url = reverse('potatoes:list')
     response = client.get(url)
 
     content = response.content.decode()
