@@ -3,6 +3,8 @@ from django.urls import reverse
 from farms.factories import AddressFactory
 from farms.views import AddressDetailView
 
+import pytest
+
 
 class TestAddressViews:
 
@@ -25,7 +27,7 @@ class TestAddressViews:
         assert address.postal_code in content
         assert address.city in content
 
-    def test_create_view_GET(self, client, mocker):
+    def test_create_view_GET_request(self, client):
         # GIVEN any state
         # WHEN requesting the create view for an address
         url = reverse('farms:address_create')
@@ -34,4 +36,14 @@ class TestAddressViews:
         # THEN there is a form and stuff
         assert response.status_code == 200
 
+    @pytest.mark.django_db
+    def test_create_view_POST_request(self, client, mocker):
+        # GIVEN any state
+        # WHEN requesting the create view for an address
+        url = reverse('farms:address_create')
+        data = {'street': 'Bajío 296', 'postal_code': '06760', 'city': 'Mérida'}
 
+        response = client.post(url, data=data)
+
+        # THEN there is a form and stuff
+        assert response.status_code == 302

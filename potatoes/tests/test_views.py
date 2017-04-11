@@ -91,7 +91,3 @@ def test_list_view(client):
     for potato in potatoes:
         assert str(potato.weight) in content
         assert potato.variety in content
-
-
-
-
