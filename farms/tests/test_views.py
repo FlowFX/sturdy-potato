@@ -12,7 +12,7 @@ def test_address_detail_view(client, mocker):
     mocker.patch.object(AddressDetailView, 'get_object', return_value=address)
 
     # WHEN requesting the DetailView
-    url = reverse('address_detail', kwargs={'pk': 1234})
+    url = reverse('farms:address_detail', kwargs={'pk': 1234})
     response = client.get(url)
 
     # THEN there is all the info we want
