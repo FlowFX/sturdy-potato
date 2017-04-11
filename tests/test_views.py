@@ -42,6 +42,7 @@ def test_create_view_get_request(client):
     url = reverse('create')
     response = client.get(url)
 
+
     # THEN it displays correctly
     assert response.status_code == 200
 
