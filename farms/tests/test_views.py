@@ -1,3 +1,5 @@
+import json
+
 from django.urls import reverse
 
 from farms.factories import AddressFactory
@@ -47,3 +49,15 @@ class TestAddressViews:
 
         # THEN there is a form and stuff
         assert response.status_code == 302
+
+
+def test_get_places_view(client):
+    postal_code = '06760'
+    url = reverse('farms:address_get_places')
+
+    response = client.get(url, {'postal_code': postal_code})
+
+    data_json = response.content.decode()
+    data_dict = json.loads(data_json)
+
+    assert data_dict.get('postal_code') == postal_code
