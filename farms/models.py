@@ -6,4 +6,5 @@ class Address(models.Model):
 
     street = models.CharField(max_length=255)
     postal_code = models.CharField(max_length=5)
+    city = models.CharField(max_length=255)
 

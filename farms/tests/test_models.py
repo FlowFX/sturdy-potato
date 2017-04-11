@@ -14,3 +14,4 @@ def test_address_factory_generates_valid_addresses_sort_of(mocker):
     assert address.street is not ''
     assert address.postal_code is not ''
     assert len(address.postal_code) == 5
+    assert address.city is not ''
