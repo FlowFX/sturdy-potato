@@ -7,7 +7,10 @@ import pytest
 
 TESTPARAMS = [
     ('Bajío 298', '06760', 'Cancun', True),
+    ('Bajío 298', '06760', '', False),  # no empty fields
+    ('', '', '', False),
 ]
+
 
 @pytest.mark.parametrize('street, postal_code, city, validity', TESTPARAMS)
 def test_address_form(street, postal_code, city, validity):

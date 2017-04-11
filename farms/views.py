@@ -12,4 +12,8 @@ class AddressDetailView(DetailView):
 class AddressCreateView(CreateView):
 
     model = Address
-    fields = ('street', 'postal_code', )
+    fields = (
+        'street',
+        'postal_code',
+        'city',
+    )
