@@ -5,7 +5,10 @@ from django.urls import reverse
 from farms.factories import AddressFactory
 from farms.views import AddressDetailView
 
+import postalcodes_mexico
+
 import pytest
+
 
 
 class TestAddressViews:
@@ -52,12 +55,22 @@ class TestAddressViews:
 
 
 def test_get_places_view(client):
+    # GIVEN a Mexican postal code with one correcponding place
     postal_code = '06760'
-    url = reverse('farms:address_get_places')
+    place = postalcodes_mexico.places(postal_code)[0]
 
+    # WHEN requesting the get_places view
+    url = reverse('farms:address_get_places')
     response = client.get(url, {'postal_code': postal_code})
 
     data_json = response.content.decode()
-    data_dict = json.loads(data_json)
+    my_places = json.loads(data_json)
 
-    assert data_dict.get('postal_code') == postal_code
+    # THEN the response contains a dictionary with all the places info
+    assert len(my_places) == 1
+
+    assert my_places[0].get('postal_code') == place.postal_code
+    assert my_places[0].get('city') == place.city
+    assert my_places[0].get('place') == place.place
+    assert my_places[0].get('municipality') == place.municipality
+    assert my_places[0].get('state') == place.state

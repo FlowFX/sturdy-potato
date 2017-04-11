@@ -6,24 +6,18 @@ from django.views.generic import CreateView, DetailView
 from .forms import AddressForm
 from .models import Address
 
+from postalcodes_mexico import places
+
 
 def get_places(request):
 
-    # context = RequestContext(request)
-#     cat_id = None
     if request.method == 'GET':
         postal_code = request.GET['postal_code']
-#
-    data = {'postal_code': postal_code}
-#     likes = 0
-#     if cat_id:
-#         category = Category.objects.get(id=int(cat_id))
-#         if category:
-#                         likes = category.likes + 1
-#             category.likes =  likes
-#             category.save()
-#
-    return JsonResponse(data)
+
+    my_places = places(postal_code)
+    my_places = [place._asdict() for place in my_places]
+
+    return JsonResponse(my_places, safe=False)
 
 
 class AddressDetailView(DetailView):
