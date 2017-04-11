@@ -1,19 +1,9 @@
 """Model factories for the potatoes project."""
 
-from potatoes.models import Address, Potato, SturdyPotato
+from potatoes.models import Potato, SturdyPotato
 
 from factory.fuzzy import FuzzyChoice, FuzzyInteger
 from factory.django import DjangoModelFactory
-
-
-class AddressFactory(DjangoModelFactory):
-    """ModelFactory for the Address object."""
-
-    class Meta:  # noqa
-        model = Address
-
-    street = 'Calle Bajío 298, Interior 101'
-    postal_code = '06760'
 
 
 class PotatoFactory(DjangoModelFactory):

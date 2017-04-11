@@ -7,13 +7,6 @@ from django.core.validators import MinValueValidator
 from django.urls import reverse
 
 
-class Address(models.Model):
-    """An address model."""
-
-    street = models.CharField(max_length=255)
-    postal_code = models.CharField(max_length=5)
-
-
 class Potato(models.Model):
     """The Potato model."""
 
