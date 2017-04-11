@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Address No. {{ address.id }}</h1>
+
+<ul>
+    <li>Street: {{ address.street }}</li>
+    <li>Postal code: {{ address.postal_code }}</li>
+</ul>
+
+{% endblock content %}
