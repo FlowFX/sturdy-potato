@@ -2,6 +2,7 @@
 
 from django.views.generic import CreateView, DetailView
 
+from .forms import AddressForm
 from .models import Address
 
 
@@ -12,8 +13,4 @@ class AddressDetailView(DetailView):
 class AddressCreateView(CreateView):
 
     model = Address
-    fields = (
-        'street',
-        'postal_code',
-        'city',
-    )
+    form_class = AddressForm
