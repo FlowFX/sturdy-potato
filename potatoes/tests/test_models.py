@@ -6,13 +6,6 @@ from potatoes.models import Potato
 import pytest
 
 
-slow = pytest.mark.skipif(
-    not pytest.config.getoption("--runslow"),
-    reason="need --runslow option to run"
-)
-
-
-@slow
 @pytest.mark.django_db
 def test_save_and_retrieve_potato():
     """Test saving and retrieving Potato objects to and from the database."""
@@ -34,7 +27,6 @@ def test_save_and_retrieve_potato():
     assert new_potato.variety == potato.variety
 
 
-@slow
 @pytest.mark.django_db
 def test_save_generates_random_slug():
     # GIVEN a new Potato object that has no slug yet
@@ -48,7 +40,6 @@ def test_save_generates_random_slug():
     assert potato.slug is not ''
 
 
-@slow
 @pytest.mark.django_db
 def test_save_generates_different_slug_for_every_object():
     # GIVEN a 2 new potatoes, saved to the database
