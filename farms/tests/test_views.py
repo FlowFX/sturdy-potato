@@ -23,6 +23,7 @@ class TestAddressViews:
         assert response.status_code == 200
         assert address.street in content
         assert address.postal_code in content
+        assert address.city in content
 
     def test_create_view_GET(self, client, mocker):
         # GIVEN any state

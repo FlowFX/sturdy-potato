@@ -13,3 +13,4 @@ class AddressFactory(DjangoModelFactory):
 
     street = 'Calle Bajío 298, Interior 101'
     postal_code = '06760'  # a valid Mexican postal code
+    city = 'Monterrey'
