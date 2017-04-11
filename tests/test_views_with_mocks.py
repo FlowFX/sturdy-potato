@@ -1,6 +1,7 @@
 from django.urls import reverse
 
-from potatoes.factories import AddressFactory, PotatoFactory
+from farms.factories import AddressFactory
+from potatoes.factories import PotatoFactory
 from potatoes.views import AddressDetailView, PotatoDetailView, PotatoListView
 
 from mock import patch

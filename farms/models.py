@@ -1,3 +1,9 @@
 from django.db import models
 
-# Create your models here.
+
+class Address(models.Model):
+    """An address model."""
+
+    street = models.CharField(max_length=255)
+    postal_code = models.CharField(max_length=5)
+

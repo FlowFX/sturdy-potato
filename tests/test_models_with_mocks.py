@@ -1,6 +1,7 @@
 """Unit test the potatoes models."""
 
-from potatoes.factories import AddressFactory, PotatoFactory, SturdyPotatoFactory
+from farms.factories import AddressFactory
+from potatoes.factories import PotatoFactory, SturdyPotatoFactory
 
 from mock import patch, MagicMock
 
@@ -72,7 +73,7 @@ def test_properly_mocked_save_method_generates_unique_slugs_with_mocker(mocker):
 
 def test_address_factory_generates_valid_addresses_sort_of(mocker):
     """Same test, but using pytest-mock."""
-    mocker.patch('potatoes.models.Address.save', MagicMock(name="save"))
+    mocker.patch('farms.models.Address.save', MagicMock(name="save"))
 
     address = AddressFactory.create()
 
