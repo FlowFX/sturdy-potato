@@ -20,7 +20,7 @@ class TestPotatos:
         """
         with patch.object(PotatoDetailView, 'get_object', return_value=potato):
             # WHEN calling the DetailView for this object
-            url = reverse('detail', kwargs={'pk': 1234})  # pk can be anything
+            url = reverse('potatoes:detail', kwargs={'pk': 1234})  # pk can be anything
             response = client.get(url)
 
             content = response.content.decode()
@@ -39,7 +39,7 @@ class TestPotatos:
         """
         with patch.object(PotatoListView, 'get_queryset', return_value=potatoes):
             # WHEN calling the list view for our potatoes
-            url = reverse('list')
+            url = reverse('potatoes:list')
             response = client.get(url)
 
             content = response.content.decode()
@@ -56,7 +56,7 @@ class TestPotatos:
         # This is new
         mocker.patch.object(PotatoDetailView, 'get_object', return_value=potato)
 
-        url = reverse('detail', kwargs={'pk': 1234})
+        url = reverse('potatoes:detail', kwargs={'pk': 1234})
         response = client.get(url)
 
         content = response.content.decode()
@@ -72,7 +72,7 @@ class TestPotatos:
         # This is new
         mocker.patch.object(PotatoListView, 'get_queryset', return_value=potatoes)
 
-        url = reverse('list')
+        url = reverse('potatoes:list')
         response = client.get(url)
 
         content = response.content.decode()
