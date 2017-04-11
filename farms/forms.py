@@ -3,7 +3,7 @@
 from .models import Address
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
+from crispy_forms.layout import Button, Submit
 
 
 from django import forms
@@ -26,3 +26,8 @@ class AddressForm(forms.ModelForm):
         self.helper = FormHelper()
 
         self.helper.add_input(Submit('submit', 'Submit'))
+        self.helper.add_input(Button(
+            'complete',
+            'Complete address',
+            css_class='btn-success',
+        ))
