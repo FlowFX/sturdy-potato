@@ -1,8 +1,7 @@
 from django.urls import reverse
 
-from farms.factories import AddressFactory
 from potatoes.factories import PotatoFactory
-from potatoes.views import AddressDetailView, PotatoDetailView, PotatoListView
+from potatoes.views import PotatoDetailView, PotatoListView
 
 from mock import patch
 
@@ -81,22 +80,3 @@ class TestPotatos:
         for potato in potatoes:
             assert str(potato.weight) in content
             assert potato.variety in content
-
-
-class TestAddresses:
-
-    def test_detail_view(self, client, mocker):
-        """Unit test for address detail view."""
-        address = AddressFactory.build()
-
-        # This is new
-        mocker.patch.object(AddressDetailView, 'get_object', return_value=address)
-
-        url = reverse('address_detail', kwargs={'pk': 1234})
-        response = client.get(url)
-
-        content = response.content.decode()
-
-        assert response.status_code == 200
-        assert address.street in content
-        assert address.postal_code in content
