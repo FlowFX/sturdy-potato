@@ -4,20 +4,33 @@ from farms.factories import AddressFactory
 from farms.views import AddressDetailView
 
 
-def test_address_detail_view(client, mocker):
-    """Unit test for address detail view."""
+class TestAddressViews:
 
-    # GIVEN an address
-    address = AddressFactory.build()
-    mocker.patch.object(AddressDetailView, 'get_object', return_value=address)
+    def test_detail_view(self, client, mocker):
+        """Unit test for address detail view."""
 
-    # WHEN requesting the DetailView
-    url = reverse('farms:address_detail', kwargs={'pk': 1234})
-    response = client.get(url)
+        # GIVEN an address
+        address = AddressFactory.build()
+        mocker.patch.object(AddressDetailView, 'get_object', return_value=address)
 
-    # THEN there is all the info we want
-    content = response.content.decode()
+        # WHEN requesting the DetailView
+        url = reverse('farms:address_detail', kwargs={'pk': 1234})
+        response = client.get(url)
 
-    assert response.status_code == 200
-    assert address.street in content
-    assert address.postal_code in content
+        # THEN there is all the info we want
+        content = response.content.decode()
+
+        assert response.status_code == 200
+        assert address.street in content
+        assert address.postal_code in content
+
+    def test_create_view_GET(self, client, mocker):
+        # GIVEN any state
+        # WHEN requesting the create view for an address
+        url = reverse('farms:address_create')
+        response = client.get(url)
+
+        # THEN there is a form and stuff
+        assert response.status_code == 200
+
+
