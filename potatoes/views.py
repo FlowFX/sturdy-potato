@@ -48,7 +48,3 @@ class PotatoListView(ListView):
     model = Potato
     context_object_name = 'potatoes'
     template_name = 'potatoes/potato_list.html'
-
-
-class AddressDetailView(DetailView):
-    pass
