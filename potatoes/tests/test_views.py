@@ -6,12 +6,6 @@ from potatoes.models import Potato
 import pytest
 
 
-slow = pytest.mark.skipif(
-    not pytest.config.getoption("--runslow"),
-    reason="need --runslow option to run"
-)
-
-
 def test_index_view(client):
     """Test the index view using the Django test client."""
 
@@ -47,7 +41,6 @@ def test_create_view_get_request(client):
     assert response.status_code == 200
 
 
-@slow
 @pytest.mark.django_db
 def test_create_view_post_request(client):
     """Test the create view for a Potato object with the Django test client."""
@@ -62,7 +55,6 @@ def test_create_view_post_request(client):
     assert response['location'] == '/potatoes/1/'
 
 
-@slow
 @pytest.mark.django_db
 def test_detail_view(client):
     """Test the detail view for a Potato object with the Django test client."""
@@ -81,7 +73,6 @@ def test_detail_view(client):
     assert potato.variety in content
 
 
-@slow
 @pytest.mark.django_db
 def test_list_view(client):
     """Test the list view for Potato objects."""
