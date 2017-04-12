@@ -15,13 +15,24 @@ def get_places(request):
         postal_code = request.GET['postal_code']
 
     my_places = places(postal_code)
-    my_places = [place._asdict() for place in my_places]
+    # my_places = [place._asdict() for place in my_places]
+    # place = my_places[0]
 
-    return JsonResponse(my_places, safe=False)
+    response = {
+        'postal_code': my_places[0].postal_code,
+        'municipality': my_places[0].municipality,
+        'city': my_places[0].city,
+        'state': my_places[0].state,
+        'place': my_places[0].place,
+        'number_of_places': len(my_places),
+    }
+
+    return JsonResponse(response, safe=True)
 
 
 class AddressDetailView(DetailView):
-    pass
+
+    model = Address
 
 
 class AddressCreateView(CreateView):
