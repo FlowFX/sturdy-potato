@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% load static %}
 
 {% block content %}
 
@@ -9,3 +10,8 @@
 
 
 {% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'js/scripts.js' %}"></script>
+{% endblock javascript %}
