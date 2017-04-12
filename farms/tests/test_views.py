@@ -46,7 +46,14 @@ class TestAddressViews:
         # GIVEN any state
         # WHEN requesting the create view for an address
         url = reverse('farms:address_create')
-        data = {'street': 'Bajío 296', 'postal_code': '06760', 'city': 'Mérida'}
+        data = {
+            'street': 'Bajío 296',
+            'postal_code': '06760',
+            'place': 'Roma Sur',
+            'municipality': 'Alvaro Obregon',
+            'city': 'Mérida',
+            'state': 'Jalisco',
+        }
 
         response = client.post(url, data=data)
 
@@ -56,21 +63,22 @@ class TestAddressViews:
 
 def test_get_places_view(client):
     # GIVEN a Mexican postal code with one correcponding place
-    postal_code = '06760'
-    place = postalcodes_mexico.places(postal_code)[0]
+    postal_code = '01030'
+    places = postalcodes_mexico.places(postal_code)
+
+    place = places[0]
 
     # WHEN requesting the get_places view
     url = reverse('farms:address_get_places')
     response = client.get(url, {'postal_code': postal_code})
 
     data_json = response.content.decode()
-    my_places = json.loads(data_json)
+    my_place = json.loads(data_json)
 
     # THEN the response contains a dictionary with all the places info
-    assert len(my_places) == 1
+    assert type(my_place) == dict
+    assert my_place.get('number_of_places') > 0
 
-    assert my_places[0].get('postal_code') == place.postal_code
-    assert my_places[0].get('city') == place.city
-    assert my_places[0].get('place') == place.place
-    assert my_places[0].get('municipality') == place.municipality
-    assert my_places[0].get('state') == place.state
+    assert my_place.get('city') == place.city
+    assert my_place.get('municipality') == place.municipality
+    assert my_place.get('state') == place.state

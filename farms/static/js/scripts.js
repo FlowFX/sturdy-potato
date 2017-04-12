@@ -2,27 +2,35 @@
 
 $(document).ready(function() {
 
-    $('#button-id-complete').click(function() {
+//    $('#button-id-complete').click(function() {
+    $('#id_postal_code').keyup(function() {
 
-        $.get('/farms/addresses/get_places', {postal_code: '06760'});
+        var postal_code = $("#id_postal_code").val()
 
-//        #, function(data){
+        if(postal_code.length > 3){
 
-//            $('#id_city').html(data);
-//            $('#id_city').hide();
-
-        });
-
+            $.ajax({
+                url: "get_places",
+                data: {
+                  postal_code: postal_code
+                },
+                type: "GET",
+                dataType: "json",
+            })
+              .done(function( json ) {
+                 $( "#id_municipality").val( json.municipality );
+                 $( "#id_place").val( json.place );
+                 $( "#id_city").val( json.city );
+                 $( "#id_state").val( json.state );
+              })
+         }
+          // Code to run if the request fails; the raw request and
+          // status codes are passed to the function
+//          .fail(function( xhr, status, errorThrown ) {
+//            alert( "Sorry, there was a problem!" );
+//            console.log( "Error: " + errorThrown );
+//            console.log( "Status: " + status );
+//            console.dir( xhr );
+//          })
     });
-//    }
-//    $('#likes').click(function(){
-//    var catid;
-//    catid = $(this).attr("data-catid");
-//     $.get('/rango/like_category/', {category_id: catid}, function(data){
-//               $('#like_count').html(data);
-//               $('#likes').hide();
-//           });
-
-
-
 });

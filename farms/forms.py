@@ -2,8 +2,8 @@
 
 from .models import Address
 
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Button, Submit
+from crispy_forms.helper import FormHelper, Layout
+from crispy_forms.layout import Button, Field, Fieldset, Submit
 
 
 from django import forms
@@ -17,8 +17,14 @@ class AddressForm(forms.ModelForm):
         fields = (
             'street',
             'postal_code',
+            'place',
+            'municipality',
             'city',
+            'state',
         )
+        # widgets = {
+        #     'place': forms.ChoiceField(choices=('1', '2')),
+        # }
 
     def __init__(self, *args, **kwargs):
         """Initiate form with Crispy Form's FormHelper."""
@@ -26,8 +32,22 @@ class AddressForm(forms.ModelForm):
         self.helper = FormHelper()
 
         self.helper.add_input(Submit('submit', 'Submit'))
-        self.helper.add_input(Button(
-            'complete',
-            'Complete address',
-            css_class='btn-success',
-        ))
+
+        self.helper.layout = Layout(
+            Fieldset(
+                'An address',
+                Field(
+                    'street',
+                    autofocus=True,
+                ),
+                'postal_code',
+                Field('place', readonly='true', placeholder='May be filled automatically.'),
+                Field('municipality', readonly='true', placeholder='Will be filled automatically.'),
+                Field('city', readonly='true', placeholder='Will be filled automatically.'),
+                Field('state', readonly='true', placeholder='Will be filled automatically.'),
+            ),
+        )
+
+        self.fields['place'].required = False
+        self.fields['street'].required = True
+        self.fields['postal_code'].required = True
