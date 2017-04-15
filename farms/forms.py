@@ -22,9 +22,9 @@ class AddressForm(forms.ModelForm):
             'city',
             'state',
         )
-        # widgets = {
-        #     'place': forms.ChoiceField(choices=('1', '2')),
-        # }
+        widgets = {
+            'place': forms.Select()
+        }
 
     def __init__(self, *args, **kwargs):
         """Initiate form with Crispy Form's FormHelper."""
@@ -41,13 +41,13 @@ class AddressForm(forms.ModelForm):
                     autofocus=True,
                 ),
                 'postal_code',
-                Field('place', readonly='true', placeholder='May be filled automatically.'),
+                Field('place', placeholder='Wait for it.'),
                 Field('municipality', readonly='true', placeholder='Will be filled automatically.'),
                 Field('city', readonly='true', placeholder='Will be filled automatically.'),
                 Field('state', readonly='true', placeholder='Will be filled automatically.'),
             ),
         )
 
-        self.fields['place'].required = False
+        self.fields['place'].required = True
         self.fields['street'].required = True
         self.fields['postal_code'].required = True
