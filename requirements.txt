@@ -1,5 +1,5 @@
 # Django
-Django==1.11
+Django==1.11.1
 django-crispy-forms==1.6.1
 django-extensions==1.7.8
 bpython==0.16
