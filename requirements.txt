@@ -23,5 +23,5 @@ flake8==3.3.0
 flake8-docstrings==1.1.0
 
 # misc
-safety==1.4.0
+safety==1.5.0
 postalcodes-mexico==0.2.0
