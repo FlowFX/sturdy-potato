@@ -1,0 +1,8 @@
+update: all
+
+schedule: "every month"
+
+assignees:
+ - flowfx
+
+close_prs: True
