@@ -1,16 +1,16 @@
 # Django
-Django==1.11.3
+Django==1.11.5
 django-crispy-forms==1.6.1
-django-extensions==1.8.0
+django-extensions==1.9.1
 bpython==0.16
 
 # pytest
-pytest==3.0.7
+pytest==3.2.2
 pytest-django==3.1.2
 pytest-flake8==0.8.1
-pytest-mock==1.6.0
-pytest-xdist==1.19.1
-factory-boy==2.8.1
+pytest-mock==1.6.3
+pytest-xdist==1.20.0
+factory-boy==2.9.2
 mock==2.0.0
 
 # coverage
@@ -19,9 +19,9 @@ pytest-cov==2.5.1
 python-coveralls==2.9.1
 
 # Flake8
-flake8==3.3.0
+flake8==3.4.1
 flake8-docstrings==1.1.0
 
 # misc
-safety==1.4.0
+safety==1.5.1
 postalcodes-mexico==0.2.0
