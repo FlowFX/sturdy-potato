@@ -5,7 +5,7 @@ django-extensions==1.9.1
 bpython==0.16
 
 # pytest
-pytest==3.0.7
+pytest==3.2.2
 pytest-django==3.1.2
 pytest-flake8==0.8.1
 pytest-mock==1.6.0
