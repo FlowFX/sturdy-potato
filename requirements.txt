@@ -1,7 +1,7 @@
 # Django
 Django==1.11.7
 django-crispy-forms==1.7.0
-django-extensions==1.8.0
+django-extensions==1.9.7
 bpython==0.16
 
 # pytest
