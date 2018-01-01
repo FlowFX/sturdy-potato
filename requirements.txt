@@ -7,7 +7,7 @@ bpython==0.16
 # pytest
 pytest==3.3.1
 pytest-django==3.1.2
-pytest-flake8==0.8.1
+pytest-flake8==0.9.1
 pytest-mock==1.6.0
 pytest-xdist==1.19.1
 factory-boy==2.8.1
